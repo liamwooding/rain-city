@@ -15,7 +15,7 @@ let questions = [{
   name: 'action',
   type: 'input',
   message: 'What do you do?',
-  validate: value => value.length ? true : 'That\s nothing'
+  validate: value => value.length ? true : 'That\'s nothing'
 }]
 
 // inquirer.prompt(questions).then(responses => console.log(chalk.yellow(figlet.textSync(responses.action, { horizontalLayout: 'full' }))))
