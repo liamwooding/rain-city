@@ -1,5 +1,5 @@
 import { scenes as scenesConfig } from './config'
-import { generateObjectsFromIds } from './lib'
+import { populateThingsFromSceneConfig } from './lib'
 
 export default class Scene {
   constructor (opts) {
@@ -13,7 +13,7 @@ export default class Scene {
   }
 
   generate () {
-    this._objects = generateObjectsFromIds(this._sceneConfig.objects)
+    this._things = populateThingsFromSceneConfig(this._sceneConfig.things)
   }
 
   getDescription () {

@@ -1,9 +1,7 @@
 import config from './config'
 
-export const generateObjectsFromIds = (ids) => {
-  ids = ids.map(id => typeof id === 'string' ? { id } : id)
-
-  return ids.reduce((objects, id) => {
-    if (Math.random() <= (id.chanceToAppear || 0)) objects.push(config.objects[id])
+export const populateThingsFromSceneConfig = (thingsConfig) => {
+  return thingsConfig.reduce((things, objectConfig) => {
+    if (Math.random() <= (objectConfig.chanceToAppear || 0)) things.push(config.things[objectConfig])
   }, [])
 }
