@@ -23,7 +23,8 @@ export const things = {
     adjectives: [ 'wooden' ],
     length: '1',
     width: '1',
-    height: '1'
+    height: '1',
+    weight: 100000
   }
 }
 
@@ -34,7 +35,7 @@ export const scenes = {
         id: 'emptyCasing',
         chanceToAppear: 1,
         minAmount: 10,
-        maxAmount: 200
+        maxAmount: 50
       },
       {
         id: 'crateCube',
@@ -43,14 +44,6 @@ export const scenes = {
         maxAmount: 5
       }
     ],
-    description: {
-      sentences: [
-        {
-          text: `There's a bunch of crates here. Spent casings litter the floor.`,
-          chanceToBeFirst: 1,
-          chanceToAppear: 1
-        }
-      ]
-    }
+    descriptions: ['The training area at CyberCops HQ']
   }
 }

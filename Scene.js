@@ -1,5 +1,9 @@
-import { scenes as scenesConfig } from './config'
-import { populateThingsFromSceneConfig } from './lib'
+import {
+  scenes as scenesConfig,
+  things as thingsConfig
+} from './config'
+import pluralize from 'pluralize'
+import Thing from './Thing'
 
 export default class Scene {
   constructor (opts) {
@@ -10,22 +14,49 @@ export default class Scene {
     }, {}))
 
     this._sceneConfig = scenesConfig[opts.sceneId || 'blank']
+    this.init()
   }
 
-  generate () {
-    this._things = populateThingsFromSceneConfig(this._sceneConfig.things)
+  init () {
+    this.populateThingsInScene()
   }
 
-  getDescription () {
-    let descriptionConfig = this._sceneConfig.description
+  getThings () {
+    return this._things
+  }
 
-    if (descriptionConfig.sentences && descriptionConfig.sentences.length) {
-      return descriptionConfig.sentences
-        .sort((a, b) => {
-          return Math.random() * a.chanceToBeFirst - Math.random() * b.chanceToBeFirst
-        })
-        .map(s => s.text)
-        .join(' ')
-    }
+  describeScene () {
+    let sceneDescription = this._sceneConfig.descriptions[0]
+    return sceneDescription
+  }
+
+  describeThings () {
+    let typesOfThings = this._things.reduce((types, thing) => {
+      types[thing.id] = types[thing.id] || {}
+      types[thing.id].thing = thing
+      if (typeof types[thing.id].count === 'undefined') types[thing.id].count = 0
+      types[thing.id].count++
+      return types
+    }, {})
+
+    return Object.keys(typesOfThings).map(key => {
+      let type = typesOfThings[key]
+      return `There ${pluralize('is', type.count)} ${pluralize(type.thing.nameWithAdjective, type.count, true)} here.`
+    }).join(' ')
+  }
+  
+  populateThingsInScene () {
+    this._things = this._sceneConfig.things.reduce((thingsInScene, thing) => {
+      if (Math.random() <= (thing.chanceToAppear || 0)) {
+        let minAmount = thing.minAmount || 0
+        let maxAmount = thing.maxAmount || minAmount
+        let amount = parseInt(Math.random() * (maxAmount - minAmount) + minAmount, 10)
+        while (amount) {
+          thingsInScene.push(new Thing(thing.id))
+          amount--
+        }
+      }
+      return thingsInScene
+    }, [])
   }
 }

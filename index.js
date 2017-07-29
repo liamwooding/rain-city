@@ -23,5 +23,6 @@ let trainingScene = new Scene({ sceneId: 'training1' })
 
 console.log(`
 ${chalk.hex(colourConfig.system)('Loading training1\n')}
-${chalk.hex(colourConfig.exposition)(trainingScene.getDescription())}
+${chalk.hex(colourConfig.exposition)(trainingScene.describeScene())}
+${chalk.hex(colourConfig.exposition)(trainingScene.describeThings())}
 `)

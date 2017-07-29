@@ -1,7 +1,6 @@
-import config from './config'
-
-export const populateThingsFromSceneConfig = (thingsConfig) => {
-  return thingsConfig.reduce((things, objectConfig) => {
-    if (Math.random() <= (objectConfig.chanceToAppear || 0)) things.push(config.things[objectConfig])
-  }, [])
+export const getRandomIntBetween = (min, max, inclusive) => {
+  min = Math.ceil(min)
+  max = Math.floor(max)
+  if (inclusive) max++
+  return Math.floor(Math.random() * (max - min)) + min //The maximum is exclusive and the minimum is inclusive
 }
