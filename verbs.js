@@ -4,13 +4,15 @@ import { player } from './Player'
 
 const verbs = {
   look: () => {
-    if (!player.scene) printExposition('You are nowhere')
+    if (!player.scene) return printExposition('You are nowhere')
     printExposition(player.scene.describeScene())
     printExposition(player.scene.describeThings())
   },
 
   inspect: target => {
-
+    if (!target) return console.error('No target passed to inspect')
+    if (!player.scene) throw new Error(`Attempted to inspect ${target} but player had no scene`)
+    printExposition(player.scene.findThingInScene(target) && player.scene.findThingInScene(target).getDescription())
   },
 
   findVerb: name => {

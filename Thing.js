@@ -43,17 +43,8 @@ export default class Thing {
     return this._id
   }
 
-  getDescription () {
-    let descriptionConfig = this._objectConfig.description
-
-    if (descriptionConfig.sentences && descriptionConfig.sentences.length) {
-      return descriptionConfig.sentences
-        .sort((a, b) => {
-          return Math.random() * a.chanceToBeFirst - Math.random() * b.chanceToBeFirst
-        })
-        .map(s => s.text)
-        .join(' ')
-    }
+  getDescription (id) {
+    this._config.descriptions[getRandomIntBetween(0, this._config.descriptions.length)]
   }
 
   get _config () {

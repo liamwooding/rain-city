@@ -22,7 +22,11 @@ export default class Scene {
     this.populateThingsInScene()
   }
 
-  getThings () {
+  set things (things) {
+    this._things = things
+  }
+
+  get things () {
     return this._things
   }
 
@@ -49,7 +53,8 @@ export default class Scene {
   findThingInScene (name) {
     let id = lookupThingIdByName(name)
  
-    let thingsWithThatName = this._things.filter(thing => thing.id = id)
+    let thingsWithThatName = this._things.filter(thing => thing.id === id)
+    console.log(thingsWithThatName, id)
     return thingsWithThatName[getRandomIntBetween(0, thingsWithThatName.length)]
   }
   
