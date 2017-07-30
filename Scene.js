@@ -4,6 +4,7 @@ import {
 } from './config'
 import pluralize from 'pluralize'
 import Thing from './Thing'
+import { getRandomIntBetween, lookupThingIdByName } from './lib'
 
 export default class Scene {
   constructor (id, opts) {
@@ -44,13 +45,20 @@ export default class Scene {
       return `There ${pluralize('is', type.count)} ${pluralize(type.thing.nameWithAdjective, type.count, true)} here.`
     }).join(' ')
   }
+
+  findThingInScene (name) {
+    let id = lookupThingIdByName(name)
+ 
+    let thingsWithThatName = this._things.filter(thing => thing.id = id)
+    return thingsWithThatName[getRandomIntBetween(0, thingsWithThatName.length)]
+  }
   
   populateThingsInScene () {
     this._things = this._sceneConfig.things.reduce((thingsInScene, thing) => {
       if (Math.random() <= (thing.chanceToAppear || 0)) {
         let minAmount = thing.minAmount || 0
         let maxAmount = thing.maxAmount || minAmount
-        let amount = parseInt(Math.random() * (maxAmount - minAmount) + minAmount, 10)
+        let amount = getRandomIntBetween(minAmount, maxAmount, true)
         while (amount) {
           thingsInScene.push(new Thing(thing.id))
           amount--

@@ -1,8 +1,16 @@
 import { verbs as verbsConfig } from './config'
+import { printExposition } from './interface'
+import { player } from './Player'
 
-export default {
-  look: target => {
-    console.log(target, typeof target)
+const verbs = {
+  look: () => {
+    if (!player.scene) printExposition('You are nowhere')
+    printExposition(player.scene.describeScene())
+    printExposition(player.scene.describeThings())
+  },
+
+  inspect: target => {
+
   },
 
   findVerb: name => {
@@ -13,3 +21,5 @@ export default {
     return verb.canonicalName
   }
 }
+
+export default verbs
