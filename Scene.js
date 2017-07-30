@@ -6,14 +6,14 @@ import pluralize from 'pluralize'
 import Thing from './Thing'
 
 export default class Scene {
-  constructor (opts) {
+  constructor (id, opts) {
     opts = opts || {}
     Object.assign(this, Object.keys(opts).reduce((obj, key) => {
       obj[`_${key}`] = opts[key]
       return obj
     }, {}))
 
-    this._sceneConfig = scenesConfig[opts.sceneId || 'blank']
+    this._sceneConfig = scenesConfig[id]
     this.init()
   }
 

@@ -47,3 +47,10 @@ export const scenes = {
     descriptions: ['The training area at CyberCops HQ']
   }
 }
+
+export const verbs = [
+  {
+    canonicalName: 'look',
+    alternateNames: []
+  }
+]
