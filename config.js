@@ -18,7 +18,7 @@ export const thingsConfig = [
     width: '0.05',
     height: '0.05',
     weight: 5,
-    descriptions: ['An empty shell from a cool cyberpunk six shooter']
+    descriptions: ['An empty shell from a cool cyberpunk revolver']
   },
   {
     type: 'crateCube',
@@ -28,7 +28,7 @@ export const thingsConfig = [
     width: '1',
     height: '1',
     weight: 100000,
-    descriptions: ['An empty crate, often used for hiding behind or jumping over']
+    descriptions: ['An empty crate, used for hiding behind or jumping over']
   }
 ]
 

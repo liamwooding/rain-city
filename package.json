@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "async": "^2.5.0",
     "chalk": "^2.0.1",
     "clear": "0.0.1",
     "clui": "^0.3.6",
@@ -18,7 +19,9 @@
     "minimist": "^1.2.0",
     "nedb": "^1.8.0",
     "pluralize": "^6.0.0",
-    "preferences": "^0.2.1"
+    "preferences": "^0.2.1",
+    "require-all": "^2.2.0",
+    "require-dir": "^0.3.2"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",

@@ -1,5 +1,6 @@
 import { verbs as verbsConfig } from './config'
 import { printExposition } from './interface'
+import { sceneController } from './SceneController'
 import { player } from './Player'
 
 const verbs = {
